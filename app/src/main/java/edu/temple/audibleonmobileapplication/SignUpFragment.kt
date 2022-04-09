@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 class SignUpFragment : Fragment() {
@@ -22,22 +23,16 @@ class SignUpFragment : Fragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_sign_up, container, false) as ViewGroup
 
+        val textView = root.findViewById<TextView>(R.id.textView4)
+
+        textView.setOnClickListener {
+            val fragment = LoginFragment()
+            val fragmentManager = activity?.supportFragmentManager
+            val fragmentTransaction = fragmentManager?.beginTransaction()
+            fragmentTransaction?.replace(R.id.register_fragment, fragment)
+            fragmentTransaction?.commit()
+        }
+
         return root
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        
-        
-    }
-
-    //companion object {
-        //fun newInstance(param1: String, param2: String) =
-            //SignUpFragment().apply {
-                //arguments = Bundle().apply {
-                    //putString(ARG_PARAM1, param1)
-                    //putString(ARG_PARAM2, param2)
-                //}
-            //}
-    //}
 }

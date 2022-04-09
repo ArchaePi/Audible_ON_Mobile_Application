@@ -1,14 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TranslationPageFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/custom_action_bar" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/translation_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/include"
+        android:text="ASL TRANSLATION"
+        android:fontFamily="@font/montserrat_regular"
+        android:textSize="20dp"
+        android:gravity="center"/>
+
+    <RelativeLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/translation_page"
+        android:layout_marginTop="15dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/finger_spell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_bg"
+            android:layout_marginStart="15dp"
+            android:text="WORD"
+            android:textColor="@color/white"
+            android:fontFamily="@font/quicksand_regular"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/word_mode"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/finger_spell"
+            android:layout_marginStart="30dp"
+            android:background="@drawable/button_bg"
+            android:text="FINGERSPELL"
+            android:textColor="@color/white"
+            android:fontFamily="@font/quicksand_regular"/>
+
+        <Switch
+            android:id="@+id/camera_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="20dp"
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/start_signing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttons"
+        android:layout_marginTop="15dp"
+        android:text="BEGIN SIGNING"
+        android:fontFamily="@font/montserrat_regular"
+        android:textSize="20dp"
+        android:gravity="center"/>
+    <RelativeLayout
+        android:id="@+id/camera_window"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:layout_below="@id/start_signing"
+        android:layout_marginTop="15dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/box_bg">
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/toText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/camera_window"
+        android:layout_marginTop="15dp"
+        android:text="TEXT TRANSLATION"
+        android:fontFamily="@font/montserrat_regular"
+        android:textSize="20dp"
+        android:gravity="center"/>
+<RelativeLayout
+    android:layout_width="350dp"
+    android:layout_height="150dp"
+    android:layout_below="@id/toText"
+    android:layout_centerHorizontal="true"
+    android:background="@drawable/box_bg"
+    android:layout_marginTop="15dp">
+    <TextView
+        android:id="@+id/text_window"
+        android:layout_width="300dp"
+        android:layout_height="120dp"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/quicksand_regular"
+        android:scrollbars="vertical"
+        android:text="Text Translation ..." />
+</RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/end_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/back_to_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="BACK"
+            android:fontFamily="@font/quicksand_regular"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/save_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/done"
+            android:layout_marginRight="20dp"
+            android:text="SAVE"
+            android:fontFamily="@font/quicksand_regular"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="DONE"
+            android:fontFamily="@font/quicksand_regular"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

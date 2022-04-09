@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "207673411690",
+    "project_id": "audible-on",
+    "storage_bucket": "audible-on.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207673411690:android:b7085805ea9ef64d91a213",
+        "android_client_info": {
+          "package_name": "edu.temple.audibleonmobileapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "207673411690-0kr63c81bfpf2jiib57gm8lgbk6949gg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpxt_Za5cjgFtaA24Y9ZHPQGuTfJtrTQM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "207673411690-0kr63c81bfpf2jiib57gm8lgbk6949gg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

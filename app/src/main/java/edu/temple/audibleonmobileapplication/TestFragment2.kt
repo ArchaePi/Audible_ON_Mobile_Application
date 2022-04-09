@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 
-
-class HomePageFragment : Fragment() {
+class TestFragment2 : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,25 +20,27 @@ class HomePageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_home_page, container, false)
-        val button = root.findViewById<Button>(R.id.nav_translation)
+        // Inflate the layout for this fragment
+        val root = inflater.inflate(R.layout.fragment_test2, container, false)
+
+        val textView = root.findViewById<TextView>(R.id.test_text2)
+        val button = root.findViewById<Button>(R.id.test_button2)
 
         button.setOnClickListener {
-            val fragment = TranslationPageFragment()
+            val fragment = TestFragment1()
             val fragmentManager = activity?.supportFragmentManager
             val fragmentTransaction = fragmentManager?.beginTransaction()
             fragmentTransaction?.replace(R.id.fragmentContainerView, fragment)
             fragmentTransaction?.addToBackStack(null)
             fragmentTransaction?.commit()
         }
-        // Inflate the layout for this fragment
         return root
     }
 
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            HomePageFragment().apply {
+            TestFragment2().apply {
                 arguments = Bundle().apply {
                 }
             }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 
 class LoginFragment : Fragment() {
 
@@ -17,18 +18,19 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val root = inflater.inflate(R.layout.fragment_login, container, false)
+
+        val textView = root.findViewById<TextView>(R.id.textView5)
+
+        textView.setOnClickListener {
+            val fragment = SignUpFragment()
+            val fragmentManager = activity?.supportFragmentManager
+            val fragmentTransaction = fragmentManager?.beginTransaction()
+            fragmentTransaction?.replace(R.id.register_fragment, fragment)
+            fragmentTransaction?.commit()
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        return root
     }
 
-    //companion object {
-        //@JvmStatic
-        //fun newInstance(param1: String, param2: String) =
-            //LoginFragment().apply {
-                //arguments = Bundle().apply {
-                    //putString(ARG_PARAM1, param1)
-                    //putString(ARG_PARAM2, param2)
-                //}
-            //}
-    //}
 }
