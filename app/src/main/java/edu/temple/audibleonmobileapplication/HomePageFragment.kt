@@ -22,6 +22,7 @@ class HomePageFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_home_page, container, false)
         val button = root.findViewById<Button>(R.id.nav_translation)
+        val exit_button = root.findViewById<Button>(R.id.exit_button)
 
         button.setOnClickListener {
             val fragment = TranslationPageFragment()
@@ -30,6 +31,10 @@ class HomePageFragment : Fragment() {
             fragmentTransaction?.replace(R.id.fragmentContainerView, fragment)
             fragmentTransaction?.addToBackStack(null)
             fragmentTransaction?.commit()
+        }
+
+        exit_button.setOnClickListener {
+            activity?.finishAndRemoveTask();
         }
         // Inflate the layout for this fragment
         return root

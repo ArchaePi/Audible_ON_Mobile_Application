@@ -21,9 +21,19 @@ class TranslationPageFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_translation_page, container, false)
         val button = root.findViewById<Button>(R.id.back_to_home)
+        val done_button = root.findViewById<Button>(R.id.done)
 
         button.setOnClickListener {
             val fragment = HomePageFragment()
+            val fragmentManager = activity?.supportFragmentManager
+            val fragmentTransaction = fragmentManager?.beginTransaction()
+            fragmentTransaction?.replace(R.id.fragmentContainerView, fragment)
+            fragmentTransaction?.addToBackStack(null)
+            fragmentTransaction?.commit()
+        }
+
+        done_button.setOnClickListener {
+            val fragment = DisplayPageFragment()
             val fragmentManager = activity?.supportFragmentManager
             val fragmentTransaction = fragmentManager?.beginTransaction()
             fragmentTransaction?.replace(R.id.fragmentContainerView, fragment)

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".TranslationPageFragment">
 
     <include
@@ -64,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttons"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:text="BEGIN SIGNING"
         android:fontFamily="@font/montserrat_regular"
         android:textSize="20dp"
@@ -74,7 +75,7 @@
         android:layout_width="350dp"
         android:layout_height="250dp"
         android:layout_below="@id/start_signing"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:layout_centerInParent="true"
         android:background="@drawable/box_bg">
 
@@ -85,7 +86,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/camera_window"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:text="TEXT TRANSLATION"
         android:fontFamily="@font/montserrat_regular"
         android:textSize="20dp"
@@ -96,7 +97,7 @@
     android:layout_below="@id/toText"
     android:layout_centerHorizontal="true"
     android:background="@drawable/box_bg"
-    android:layout_marginTop="15dp">
+    android:layout_marginTop="20dp">
     <TextView
         android:id="@+id/text_window"
         android:layout_width="300dp"
@@ -118,18 +119,11 @@
             android:id="@+id/back_to_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="40dp"
+            android:textSize="15dp"
             android:text="BACK"
             android:fontFamily="@font/quicksand_regular"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/save_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/done"
-            android:layout_marginRight="20dp"
-            android:text="SAVE"
-            android:fontFamily="@font/quicksand_regular"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/done"
@@ -137,7 +131,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:text="DONE"
-            android:fontFamily="@font/quicksand_regular"/>
+            android:textSize="15dp"
+            android:fontFamily="@font/quicksand_regular"
+            android:layout_marginEnd="40dp"/>
 
     </RelativeLayout>
 

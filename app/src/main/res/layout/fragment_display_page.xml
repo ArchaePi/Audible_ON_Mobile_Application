@@ -1,14 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".DisplayPageFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/custom_action_bar"/>
 
-</FrameLayout>
+    <RelativeLayout
+        android:id="@+id/top_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/include"
+        android:layout_marginTop="20dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/audio_button"
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:background="@drawable/button_bg"
+            android:text="TEXT TO SPEECH"
+            android:textColor="@color/white"
+            android:fontFamily="@font/quicksand_regular"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:layout_marginStart="40dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/asl_button"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/button_bg"
+            android:text="TEXT TO ASL"
+            android:textColor="@color/white"
+            android:fontFamily="@font/quicksand_regular"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:layout_marginEnd="40dp"/>
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/translated_text"
+        android:layout_width="380dp"
+        android:layout_height="450dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/top_buttons"
+        android:inputType="textMultiLine"
+        android:lines="10"
+        android:minLines="1"
+        android:gravity="top|start"
+        android:maxLines="30"
+        android:scrollbars="vertical"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/frame_bg"/>
+
+    <RelativeLayout
+        android:id="@+id/bottom_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="BACK"
+            android:textSize="15dp"
+            android:fontFamily="@font/quicksand_regular"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/share_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="SHARE"
+            android:textSize="15dp"
+            android:fontFamily="@font/quicksand_regular" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="30dp"
+            android:text="SAVE"
+            android:textSize="15dp"
+            android:fontFamily="@font/quicksand_regular"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
