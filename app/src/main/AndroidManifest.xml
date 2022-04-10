@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.temple.audibleonmobileapplication">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera2.front" />
-    <uses-feature android:name="android.hardware.camera2.level.full" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:name="android.hardware.audio.output" />
     <uses-feature android:name="android.hardware.microphone" />
     <uses-feature android:name="android.hardware.screen.portrait" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AudibleONMobileApplication"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".JavaCameraActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

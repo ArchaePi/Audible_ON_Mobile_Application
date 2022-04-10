@@ -24,7 +24,7 @@ class StartFragment : Fragment() {
         val button2 = root.findViewById<Button>(R.id.skip_button)
 
         button.setOnClickListener {
-            val fragment = RegisterFragment()
+            val fragment = LoginFragment()
             val fragmentManager = activity?.supportFragmentManager
             val fragmentTransaction = fragmentManager?.beginTransaction()
             fragmentTransaction?.replace(R.id.fragmentContainerView, fragment)

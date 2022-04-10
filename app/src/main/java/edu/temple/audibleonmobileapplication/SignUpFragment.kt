@@ -23,13 +23,13 @@ class SignUpFragment : Fragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_sign_up, container, false) as ViewGroup
 
-        val textView = root.findViewById<TextView>(R.id.textView4)
+        val textView = root.findViewById<TextView>(R.id.loginLink)
 
         textView.setOnClickListener {
             val fragment = LoginFragment()
             val fragmentManager = activity?.supportFragmentManager
             val fragmentTransaction = fragmentManager?.beginTransaction()
-            fragmentTransaction?.replace(R.id.register_fragment, fragment)
+            fragmentTransaction?.replace(R.id.fragmentContainerView, fragment)
             fragmentTransaction?.commit()
         }
 
