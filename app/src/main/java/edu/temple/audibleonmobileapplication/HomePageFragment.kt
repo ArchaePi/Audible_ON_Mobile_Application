@@ -1,5 +1,6 @@
 package edu.temple.audibleonmobileapplication
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,12 +26,8 @@ class HomePageFragment : Fragment() {
         val exit_button = root.findViewById<Button>(R.id.exit_button)
 
         button.setOnClickListener {
-            val fragment = TranslationPageFragment()
-            val fragmentManager = activity?.supportFragmentManager
-            val fragmentTransaction = fragmentManager?.beginTransaction()
-            fragmentTransaction?.replace(R.id.fragmentContainerView, fragment)
-            fragmentTransaction?.addToBackStack(null)
-            fragmentTransaction?.commit()
+                val intent = Intent(activity, CameraActivity::class.java)
+                startActivity(intent)
         }
 
         exit_button.setOnClickListener {

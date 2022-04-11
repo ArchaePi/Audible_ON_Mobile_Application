@@ -85,6 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+
     </RelativeLayout>
 
     <TextView
@@ -97,22 +98,22 @@
         android:fontFamily="@font/montserrat_regular"
         android:textSize="20dp"
         android:gravity="center"/>
-<RelativeLayout
-    android:layout_width="350dp"
-    android:layout_height="150dp"
-    android:layout_below="@id/toText"
-    android:layout_centerHorizontal="true"
-    android:background="@drawable/box_bg"
-    android:layout_marginTop="20dp">
-    <TextView
-        android:id="@+id/text_window"
-        android:layout_width="300dp"
-        android:layout_height="120dp"
-        android:layout_centerInParent="true"
-        android:fontFamily="@font/quicksand_regular"
-        android:scrollbars="vertical"
-        android:text="Text Translation ..." />
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/toText"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/box_bg"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/text_window"
+            android:layout_width="300dp"
+            android:layout_height="120dp"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/quicksand_regular"
+            android:scrollbars="vertical"
+            android:text="Text Translation ..." />
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/end_buttons"
