@@ -6,17 +6,21 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
-import android.os.HandlerThread
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
-import androidx.camera.core.impl.ImageAnalysisConfig
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.video.*
+import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import edu.temple.audibleonmobileapplication.databinding.ActivityCameraBinding
+import org.opencv.android.OpenCVLoader
+import org.opencv.android.Utils
+import org.opencv.core.Mat
+import org.opencv.imgproc.Imgproc
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -38,6 +42,7 @@ class CameraActivity : AppCompatActivity(), ImageAnalysis.Analyzer {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+        OpenCVLoader.initDebug()
 
         val back_button = findViewById<Button>(R.id.back_to_home)
 
@@ -46,8 +51,15 @@ class CameraActivity : AppCompatActivity(), ImageAnalysis.Analyzer {
             viewBinding.cameraButton.setOnCheckedChangeListener { _, b ->
                 if(b){
                     startCamera()
+                    viewBinding.wordMode.setOnClickListener {
+                        viewBinding.image.visibility = View.VISIBLE
+                    }
+                    viewBinding.fingerSpell.setOnClickListener {
+                        viewBinding.image.visibility = View.GONE
+                    }
                 }else{
                     stopCamera()
+
                 }
             }
         } else {
@@ -85,6 +97,13 @@ class CameraActivity : AppCompatActivity(), ImageAnalysis.Analyzer {
 
             // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
+            // Image analysis use case
+            // Image analysis use case
+            val imageAnalysis = ImageAnalysis.Builder()
+                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                .build()
+
+            imageAnalysis.setAnalyzer(cameraExecutor, this)
 
             try {
                 // Unbind use cases before rebinding
@@ -92,7 +111,7 @@ class CameraActivity : AppCompatActivity(), ImageAnalysis.Analyzer {
 
                 // Bind use cases to camera
                 cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview)
+                    this, cameraSelector, preview, imageAnalysis)
 
             } catch(exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
@@ -104,7 +123,7 @@ class CameraActivity : AppCompatActivity(), ImageAnalysis.Analyzer {
 
     @SuppressLint("ResourceAsColor")
     private fun stopCamera(){
-       ProcessCameraProvider.getInstance(this).get().unbindAll()
+        ProcessCameraProvider.getInstance(this).get().unbindAll()
     }
 
 
@@ -119,7 +138,7 @@ class CameraActivity : AppCompatActivity(), ImageAnalysis.Analyzer {
         cameraExecutor.shutdown()
     }
 
-   companion object {
+    companion object {
         private const val TAG = "CameraXApp"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
         private const val REQUEST_CODE_PERMISSIONS = 10
@@ -135,31 +154,37 @@ class CameraActivity : AppCompatActivity(), ImageAnalysis.Analyzer {
     }
 
     override fun analyze(image: ImageProxy) {
-        TODO("Not yet implemented")
+        Log.d("TAG", "analyze: got the frame at: " + image.imageInfo.timestamp)
+        runOnUiThread {
+            val viewFinder = findViewById<PreviewView>(R.id.viewFinder)
+            val bitmap: Bitmap? = viewFinder.bitmap
+
+            image.close()
+
+            if (bitmap == null)
+                return@runOnUiThread
+
+            val bitmap1: Bitmap? = bitmap?.let { makeGray(it) }
+
+            viewBinding.image.setImageBitmap(bitmap1)
+        }
     }
 
-    private fun setImageAnalysis(): ImageAnalysis? {
 
-        // Setup image analysis pipeline that computes average pixel luminance
-        val analyzerThread = HandlerThread("OpenCVAnalysis")
-        analyzerThread.start()
-        val imageAnalysisConfig: ImageAnalysisConfig = Builder()
-            .setImageReaderMode(ImageAnalysis.ImageReaderMode.ACQUIRE_LATEST_IMAGE)
-            .setCallbackHandler(Handler(analyzerThread.looper))
-            .setImageQueueDepth(1).build()
-        val imageAnalysis = ImageAnalysis(imageAnalysisConfig)
-        imageAnalysis.setAnalyzer(
-            object : ImageAnalysis.Analyzer {
-                fun analyze(image: ImageProxy?, rotationDegrees: Int) {
-                    //Analyzing live camera feed begins.
-                    val bitmap: Bitmap = textureView.getBitmap() ?: return
-                    val mat = Mat()
-                    Utils.bitmapToMat(bitmap, mat)
-                    Imgproc.cvtColor(mat, mat, currentImageType)
-                    Utils.matToBitmap(mat, bitmap)
-                    runOnUiThread { ivBitmap.setImageBitmap(bitmap) }
-                }
-            })
-        return imageAnalysis
+
+    private fun makeGray(bitmap: Bitmap) : Bitmap {
+
+        // Create OpenCV mat object and copy content from bitmap
+        val mat = Mat()
+        Utils.bitmapToMat(bitmap, mat)
+
+        // Convert to grayscale
+        Imgproc.cvtColor(mat, mat, Imgproc.COLOR_RGB2GRAY)
+
+        // Make a mutable bitmap to copy grayscale image
+        val grayBitmap = bitmap.copy(bitmap.config, true)
+        Utils.matToBitmap(mat, grayBitmap)
+
+        return grayBitmap
     }
 }
