@@ -1,0 +1,1 @@
+C:\Users\archa\AndroidStudioProjects\AudibleONMobileApplication\sdk\build\intermediates\cxx\RelWithDebInfo\6q606i5l\obj\armeabi-v7a

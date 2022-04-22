@@ -14,4 +14,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Audible ON Mobile Application"
 include ':app'
-include ':opencv'
+include ':opencv2'
