@@ -25,6 +25,7 @@ import com.google.mediapipe.solutions.hands.HandsOptions;
 import com.google.mediapipe.solutions.hands.HandsResult;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class HandsActivity extends AppCompatActivity {
     private static final String TAG = "HandsActivity";
@@ -277,7 +278,7 @@ public class HandsActivity extends AppCompatActivity {
         glSurfaceView.setRenderInputImage(true);
         hands.setResultListener(
                 handsResult -> {
-                    logWristLandmark(handsResult, /*showPixelValues=*/ false);
+                    handLandmarks(handsResult, /*showPixelValues=*/ false);
                     glSurfaceView.setRenderData(handsResult);
                     glSurfaceView.requestRender();
                 });
@@ -356,5 +357,37 @@ public class HandsActivity extends AppCompatActivity {
                         "MediaPipe Hand wrist world coordinates (in meters with the origin at the hand's"
                                 + " approximate geometric center): x=%f m, y=%f m, z=%f m",
                         wristWorldLandmark.getX(), wristWorldLandmark.getY(), wristWorldLandmark.getZ()));
+    }
+
+    private void handLandmarks(HandsResult result, boolean showPixelValues){
+        if (result.multiHandLandmarks().isEmpty()) {
+            return;
+        }
+        ArrayList<Landmark> landmarks = new ArrayList<>();
+
+        for(int i = 0; i < HandLandmark.NUM_LANDMARKS; i++){
+            landmarks.add(result.multiHandWorldLandmarks().get(0).getLandmarkList().get(i));
+        }
+        a(landmarks);
+
+    }
+    //Assuming going towards the right gets larger
+    //Assuming going towards the top of the screen gets smaller
+    private int a(ArrayList<Landmark> landmarks){
+        if(landmarks.isEmpty()){
+            return -1;
+        }else{
+            boolean index = landmarks.get(8).getY() > landmarks.get(6).getY();
+            boolean middle = landmarks.get(12).getY() > landmarks.get(10).getY();
+            boolean ring = landmarks.get(16).getY() > landmarks.get(14).getY();
+            boolean pinky = landmarks.get(20).getY() > landmarks.get(18).getY();
+            boolean thumb = landmarks.get(4).getX() > landmarks.get(3).getX();
+            if(index && middle && ring && pinky && thumb){
+                Log.i(
+                        TAG,
+                        String.format("You signed A"));
+            }
+        }
+        return 0;
     }
 }
