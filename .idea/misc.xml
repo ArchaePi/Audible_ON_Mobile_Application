@@ -10,6 +10,8 @@
         <entry key="..\:/Users/archa/AndroidStudioProjects/AudibleONMobileApplication/app/src/main/res/drawable/thumb.xml" value="0.184" />
         <entry key="..\:/Users/archa/AndroidStudioProjects/AudibleONMobileApplication/app/src/main/res/drawable/track.xml" value="0.184" />
         <entry key="..\:/Users/archa/AndroidStudioProjects/AudibleONMobileApplication/app/src/main/res/layout/activity_camera.xml" value="0.1" />
+        <entry key="..\:/Users/archa/AndroidStudioProjects/AudibleONMobileApplication/app/src/main/res/layout/activity_display.xml" value="0.1" />
+        <entry key="..\:/Users/archa/AndroidStudioProjects/AudibleONMobileApplication/app/src/main/res/layout/activity_hands.xml" value="0.1" />
         <entry key="..\:/Users/archa/AndroidStudioProjects/AudibleONMobileApplication/app/src/main/res/layout/activity_java_camera.xml" value="0.1" />
         <entry key="..\:/Users/archa/AndroidStudioProjects/AudibleONMobileApplication/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/archa/AndroidStudioProjects/AudibleONMobileApplication/app/src/main/res/layout/camera_fragment.xml" value="0.1" />
@@ -26,6 +28,8 @@
         <entry key="..\:/Users/archa/AndroidStudioProjects/AudibleONMobileApplication/app/src/main/res/layout/fragment_test1.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/archa/AndroidStudioProjects/AudibleONMobileApplication/app/src/main/res/layout/fragment_test2.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/archa/AndroidStudioProjects/AudibleONMobileApplication/app/src/main/res/layout/fragment_translation_page.xml" value="0.22" />
+        <entry key="..\:/Users/archa/AndroidStudioProjects/AudibleONMobileApplication/app/src/main/res/layout/fragment_web.xml" value="0.1" />
+        <entry key="..\:/Users/archa/AndroidStudioProjects/AudibleONMobileApplication/app/src/main/res/mipmap-anydpi-v26/ic_launcher2.webp.xml" value="0.1" />
       </map>
     </option>
   </component>

@@ -12,16 +12,16 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.camera.video.*
 import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.mediapipe.solutions.hands.Hands
+import com.google.mediapipe.solutions.hands.HandsOptions
 import edu.temple.audibleonmobileapplication.databinding.ActivityCameraBinding
 import org.opencv.android.OpenCVLoader
 import org.opencv.android.Utils
 import org.opencv.core.Mat
 import org.opencv.imgproc.Imgproc
-import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -29,6 +29,11 @@ import java.util.concurrent.Executors
 typealias LumaListener = (luma: Double) -> Unit
 
 class CameraActivity : AppCompatActivity(), ImageAnalysis.Analyzer {
+    private var hands: Hands? = null
+
+    // Run the pipeline and the model inference on GPU or CPU.
+    private val RUN_ON_GPU = false
+
     private lateinit var viewBinding: ActivityCameraBinding
 
     private lateinit var cameraProvider: ProcessCameraProvider
@@ -186,5 +191,24 @@ class CameraActivity : AppCompatActivity(), ImageAnalysis.Analyzer {
         Utils.matToBitmap(mat, grayBitmap)
 
         return grayBitmap
+    }
+
+    private fun makeHands(bitmap: Bitmap) : Bitmap{
+        hands = Hands(
+            this,
+            HandsOptions.builder()
+                .setStaticImageMode(false)
+                .setMaxNumHands(2)
+                .setRunOnGpu(RUN_ON_GPU)
+                .build())
+
+        hands!!.setErrorListener { message: String, e: RuntimeException? ->
+            Log.e(TAG,
+                "MediaPipe Hands error:$message")
+        }
+        hands!!.send(bitmap)
+
+        return bitmap
+
     }
 }

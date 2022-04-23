@@ -26,14 +26,14 @@ class HomePageFragment : Fragment() {
         val exit_button = root.findViewById<Button>(R.id.exit_button)
 
         button.setOnClickListener {
-                //val intent = Intent(activity, CameraActivity::class.java)
-                //startActivity(intent)
-            val fragment = DisplayPageFragment()
-            val fragmentManager = activity?.supportFragmentManager
-            val fragmentTransaction = fragmentManager?.beginTransaction()
-            fragmentTransaction?.replace(R.id.fragmentContainerView, fragment)
-            fragmentTransaction?.addToBackStack(null)
-            fragmentTransaction?.commit()
+                val intent = Intent(activity, HandsActivity::class.java)
+                startActivity(intent)
+            //val fragment = DisplayPageFragment()
+            //val fragmentManager = activity?.supportFragmentManager
+            //val fragmentTransaction = fragmentManager?.beginTransaction()
+            //fragmentTransaction?.replace(R.id.fragmentContainerView, fragment)
+            //fragmentTransaction?.addToBackStack(null)
+            //fragmentTransaction?.commit()
         }
 
         exit_button.setOnClickListener {
