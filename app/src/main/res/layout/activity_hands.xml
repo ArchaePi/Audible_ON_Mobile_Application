@@ -26,6 +26,12 @@
             style="?android:attr/buttonBarButtonStyle" android:layout_height="wrap_content"
             android:text="@string/start_camera" />
     </LinearLayout>
+    <EditText
+        android:id="@+id/letter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="output"
+        android:layout_gravity="center"/>
     <FrameLayout
         android:id="@+id/preview_display_layout"
         android:layout_width="match_parent"

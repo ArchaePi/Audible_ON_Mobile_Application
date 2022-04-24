@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 rootProject.name = "Audible ON Mobile Application"
 include ':app'
 include ':opencv2'
+include ':commonlib'
+include ':mobilertc'

@@ -9,7 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TextView;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.exifinterface.media.ExifInterface;
@@ -29,6 +32,7 @@ import java.util.ArrayList;
 
 public class HandsActivity extends AppCompatActivity {
     private static final String TAG = "HandsActivity";
+    private String text = "";
 
     private Hands hands;
     // Run the pipeline and the model inference on GPU or CPU.
@@ -59,6 +63,9 @@ public class HandsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hands);
+
+        //TextView letter = (TextView) findViewById(R.id.letter);
+        //letter.setText(text);
 
         setupStaticImageDemoUiComponents();
         setupVideoDemoUiComponents();
@@ -368,7 +375,12 @@ public class HandsActivity extends AppCompatActivity {
         for(int i = 0; i < HandLandmark.NUM_LANDMARKS; i++){
             landmarks.add(result.multiHandWorldLandmarks().get(0).getLandmarkList().get(i));
         }
-        a(landmarks);
+
+        if(a(landmarks) == 1){
+            text = "A";
+        }else if(b(landmarks) == 1){
+            text = "B";
+        }
 
     }
     //Assuming going towards the right gets larger
@@ -383,9 +395,26 @@ public class HandsActivity extends AppCompatActivity {
             boolean pinky = landmarks.get(20).getY() > landmarks.get(18).getY();
             boolean thumb = landmarks.get(4).getX() > landmarks.get(3).getX();
             if(index && middle && ring && pinky && thumb){
-                Log.i(
-                        TAG,
-                        String.format("You signed A"));
+                EditText test = (EditText) findViewById(R.id.letter);
+                        test.setText("A");
+                return 1;
+                //(TextView)
+            }
+        }
+        return 0;
+    }
+
+    private int b(ArrayList<Landmark> landmarks){
+        if(landmarks.isEmpty()){
+            return -1;
+        }else{
+            boolean index = landmarks.get(8).getY() < landmarks.get(6).getY();
+            boolean middle = landmarks.get(12).getY() < landmarks.get(10).getY();
+            boolean ring = landmarks.get(16).getY() < landmarks.get(14).getY();
+            boolean pinky = landmarks.get(20).getY() < landmarks.get(18).getY();
+            boolean thumb = landmarks.get(4).getX() < landmarks.get(3).getX();
+            if(index && middle && ring && pinky && thumb){
+                //letter.setText("B");
             }
         }
         return 0;
