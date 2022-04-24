@@ -21,6 +21,9 @@
         android:theme="@style/Theme.AudibleONMobileApplication"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ZoomActivity"
+            android:exported="false" />
+        <activity
             android:name=".HandsActivity"
             android:exported="false" />
         <activity

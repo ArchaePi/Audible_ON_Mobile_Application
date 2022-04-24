@@ -21,10 +21,8 @@ public interface AuthConstants {
      */
     public final static String SDK_JWTTOKEN = "";
 
-    // TODO Change it to your APP Key
     public final static String SDK_KEY = "ENa53BaADGm8H7xF93EnyaiYJzmE9iDXyneN";
 
-    // TODO Change it to your APP Secret
     public final static String SDK_SECRET = "AypAQOnJ22CWOA3T1ajz0fhwZOrORFkXS9KD";
 
 }
